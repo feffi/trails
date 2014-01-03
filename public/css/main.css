@@ -1,0 +1,31 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0;
+	font-family: 'Lato', sans-serif;
+/*	text-align: center;*/
+	color: #999;
+	padding-top: 50px;
+}
+
+
+a:link,a:visited,a:active,a:hover {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #555;
+}
+
+.brand {
+	font-family: 'Covered By Your Grace', cursive;
+	color: #5cb85c !important;
+}
+
+.logo {
+	font-family: 'Covered By Your Grace', cursive;
+	font-size: 64px;
+	color: #5cb85c !important;
+}

@@ -1,0 +1,54 @@
+{
+	"name": "feffi/trails",
+	"description": "The trails project.",
+	"keywords": ["courses", "trails"],
+	"license": "MIT",
+	"require": {
+		"laravel/framework": "4.0.*",
+		"barryvdh/laravel-ide-helper": "1.*",
+		"twitter/bootstrap": "*",
+		"barryvdh/laravel-debugbar": "dev-master",
+		"components/jquery": "dev-master",
+		"twig/twig": "dev-master",
+		"leafo/lessphp": "dev-master",
+		"leafo/scssphp": "dev-master",
+		"ptachoire/cssembed": "dev-master",
+		"leafo/scssphp-compass": "dev-master"
+	},
+	"require-dev": {
+        "phpunit/phpunit": "3.7.*",
+        "phpunit/dbunit": ">=1.2",
+        "phpunit/php-invoker": "*",
+        "phpunit/phpunit-selenium": ">=1.2",
+        "phpunit/phpunit-story": "*"
+    },
+	"autoload": {
+		"classmap": [
+			"app/commands",
+			"app/controllers",
+			"app/models",
+			"app/database/migrations",
+			"app/database/seeds"
+		]
+	},
+	"scripts": {
+		"post-install-cmd": [
+			"php artisan optimize"
+		],
+		"post-update-cmd": [
+			"php artisan clear-compiled",
+			"php artisan ide-helper:generate",
+			"php artisan optimize",
+			"php artisan debugbar:publish",
+			"php artisan asset:publish --path='vendor/twitter/bootstrap/dist' twitter/bootstrap",
+			"php artisan asset:publish --path='vendor/components/jquery' components/jquery"
+		],
+		"post-create-project-cmd": [
+			"php artisan key:generate"
+		]
+	},
+	"config": {
+		"preferred-install": "dist"
+	},
+	"minimum-stability": "dev"
+}
