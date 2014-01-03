@@ -13,7 +13,7 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'macbunker.local',
+			'host'      => 'localhost',
 			'database'  => 'trails',
 			'username'  => 'trails',
 			'password'  => 'Z6nQW5t{[/YL[atL2Fw@T/WFSP3Uv1',
