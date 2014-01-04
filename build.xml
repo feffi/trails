@@ -17,7 +17,7 @@
 	<target name="build" depends="info,prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpdox,phpunit,phpcb,idehelper" />
 	<target name="build.fast" depends="info,prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpdox,phpunit,phpcb,idehelper" />
 	<target name="build.parallel" depends="info,prepare,lint,tools-parallel,phpunit,phpcb,idehelper" />
-	<target name="build.travisci" depends="prepare,lint,phploc,phpunit" />
+	<target name="build.travisci" depends="prepare,lint,phpunit" />
 
 	<target name="tools-parallel" description="Run tools in parallel">
 		<parallel threadCount="4">
