@@ -4,7 +4,7 @@
 	"keywords": ["courses", "trails"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.0.*",
+		"laravel/framework": "4.*",
 		"barryvdh/laravel-ide-helper": "1.*",
 		"twitter/bootstrap": "*",
 		"barryvdh/laravel-debugbar": "dev-master",
