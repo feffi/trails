@@ -7,6 +7,7 @@ maintain their trails.
 
 [![Build Status](https://travis-ci.org/feffi/trails.png?branch=master)](https://travis-ci.org/feffi/trails)
 [![Coverage Status](https://coveralls.io/repos/feffi/trails/badge.png)](https://coveralls.io/r/feffi/trails)
+[![Dependency Status](https://www.versioneye.com/user/projects/52c8462bec1375078b00002e/badge.png)](https://www.versioneye.com/user/projects/52c8462bec1375078b00002e)
 
 ## Installation
 
