@@ -47,13 +47,7 @@
 	</target>
 
 	<target name="clean" description="Cleanup build artifacts">
-		<delete dir="${build.path.report}/api" />
-		<delete dir="${build.path.report}/code-browser" />
-		<delete dir="${build.path.report}/coverage" />
-		<delete dir="${build.path.report}/logs" />
-		<delete dir="${build.path.report}/pdepend" />
-		<delete dir="${build.path.report}/phpdox" />
-		<delete includeemptydirs="true">
+		<delete includeemptydirs="true" failonerror="false">
 			<fileset dir="${build.path.report}" includes="**/*" />
 		</delete>
 	</target>
