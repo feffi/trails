@@ -8,7 +8,7 @@ install:
 
 before_script:
   - pear channel-discover pear.phpqatools.org
-  - pear install -f --alldeps phpqatools/phpqatools
+  - pear install -f phpqatools/phpqatools
   - phpenv rehash
  
 script:
