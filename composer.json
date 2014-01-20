@@ -13,7 +13,8 @@
 		"leafo/lessphp": "dev-master",
 		"leafo/scssphp": "dev-master",
 		"ptachoire/cssembed": "dev-master",
-		"leafo/scssphp-compass": "dev-master"
+		"leafo/scssphp-compass": "dev-master",
+		"way/generators": "dev-master"
 	},
 	"require-dev": {
         "phpunit/phpunit": "3.7.*",

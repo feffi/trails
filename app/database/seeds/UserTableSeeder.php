@@ -9,7 +9,7 @@ class UserTableSeeder extends Seeder {
 				'lastname' => 'Wennemuth',
 				'username' => 'feffi',
 				'email' => 'feffi@feffi.org',
-				'password' => Hash::make ('notroot')
+				'password' => Hash::make ('test')
 		));
 	}
 }
