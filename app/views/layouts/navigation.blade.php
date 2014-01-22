@@ -7,7 +7,7 @@
 		<li><a href="{{ URL::secure('backlog'); }}">Upcoming<span class="badge btn-success" style="margin-left:5px;">12</span></a></li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
-		<li><p class="navbar-text">Signed in as <a href="profile" class="navbar-link"><strong>{{ Auth::user()->username }}</strong></a></p></li>
+		<li><p class="navbar-text">Signed in as <a href="profile" class="navbar-link"><strong>feffi</strong></a></p></li>
 		<li>
 			{{ Form::open(array('url' => 'logout', 'class' => 'form')) }}
 				<button type="submit" class="btn navbar-btn btn-success" style="padding-right: 50px;"><span class="glyphicon glyphicon-log-out"></span></button>

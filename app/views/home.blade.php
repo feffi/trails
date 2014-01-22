@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-	<title>{{ Auth::user()->username }}'s dashboard</title>
+	<title>feffi's dashboard</title>
 @stop
 
 @section('body')
