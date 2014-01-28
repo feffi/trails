@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 class UserTableSeeder extends Seeder {
 
 	public function run() {

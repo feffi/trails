@@ -3,12 +3,12 @@
 namespace App\Models;
 use Eloquent;
 
-class Booking extends Eloquent {
+class Session extends Eloquent {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'bookings';
+	protected $table = 'sessions';
 }

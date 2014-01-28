@@ -11,11 +11,15 @@ class CreateBookingsTable extends Migration {
 	 */
 	public function up() {
 		Schema::create ('bookings', function (Blueprint $table) {
+			$table->engine = 'InnoDB';
 			$table->bigIncrements ('id');
-			$table->bigInteger ('user');
-			$table->bigInteger ('track');
-			$table->index('user');
-			$table->index('track');
+			$table->bigInteger ('user_id')->unsigned();
+			$table->bigInteger ('track_id')->unsigned();
+			$table->timestamps ();
+			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('track_id')->references('id')->on('tracks');
+			$table->index('user_id');
+			$table->index('track_id');
 		});
 	}
 
@@ -25,6 +29,6 @@ class CreateBookingsTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::drop ('bookings');
+		Schema::dropIfExists ('bookings');
 	}
 }

@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Models;
+use Eloquent;
+
 class Track extends Eloquent {
 
 	/**

@@ -11,19 +11,18 @@ class CreateTracksTable extends Migration {
 	 */
 	public function up() {
 		Schema::create ('tracks', function (Blueprint $table) {
+			$table->engine = 'InnoDB';
 			$table->bigIncrements ('id');
-			$table->string ('name', 64);
+			$table->string ('name', 128);
 			$table->enum ('status', array (
 				'PENDING',
 				'PLANNED',
 				'HELD'
 			))->default ('PENDING');
-			$table->bigInteger ('id_conference'); // Foreign key to a conference day(s)
 			$table->string ('description', 5000);
 			$table->timestamps ();
 			$table->index('name');
 			$table->index('status');
-			$table->index('id_conference');
 		});
 	}
 
@@ -33,6 +32,6 @@ class CreateTracksTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::drop ('tracks');
+		Schema::dropIfExists ('tracks');
 	}
 }

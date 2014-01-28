@@ -1,9 +1,9 @@
 <?php
-
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConferenceDaysTable extends Migration {
+
+class CreateSessionsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,10 +11,11 @@ class CreateConferenceDaysTable extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		Schema::create ('conferenceDays', function (Blueprint $table) {
+		Schema::create ('sessions', function (Blueprint $table) {
+			$table->engine = 'InnoDB';
 			$table->bigIncrements ('id');
-			$table->dateTime ('from');
-			$table->dateTime ('to');
+			$table->date ('from');
+			$table->date ('to');
 			$table->enum ('status', array (
 				'PENDING',
 				'PLANNED',
@@ -22,9 +23,9 @@ class CreateConferenceDaysTable extends Migration {
 			))->default ('PENDING');
 			$table->string ('description', 5000);
 			$table->timestamps ();
-			$table->index('from');
-			$table->index('to');
-			$table->index('status');
+			$table->index ('from');
+			$table->index ('to');
+			$table->index ('status');
 		});
 	}
 
@@ -34,6 +35,6 @@ class CreateConferenceDaysTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::drop ('conferenceDays');
+		Schema::dropIfExists ('sessions');
 	}
-	}
+}
