@@ -1,9 +1,6 @@
 <?php
 
-namespace App\Models;
-use Eloquent;
-
-class Slot extends Eloquent {
+class SlotModel extends Eloquent {
 
 	/**
 	 * The database table used by the model.

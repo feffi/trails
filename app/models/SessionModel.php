@@ -1,9 +1,6 @@
 <?php
 
-namespace App\Models;
-use Eloquent;
-
-class Session extends Eloquent {
+class SessionModel extends Eloquent {
 
 	/**
 	 * The database table used by the model.

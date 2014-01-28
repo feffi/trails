@@ -1,9 +1,6 @@
 <?php
 
-namespace App\Models;
-use Eloquent;
-
-class Track extends Eloquent {
+class TrackModel extends Eloquent {
 
 	/**
 	 * The database table used by the model.
