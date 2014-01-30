@@ -1,4 +1,4 @@
-<?php
+<?php namespace Trails\Controller;
 
 use Illuminate\Routing\Controller;
 

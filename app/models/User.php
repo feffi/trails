@@ -1,4 +1,7 @@
-<?php namespace Trails\Models;
+<?php
+
+
+namespace Trails\Models;
 
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
@@ -17,16 +20,17 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('password');
+	protected $hidden = array (
+		'password'
+	);
 
 	/**
 	 * Get the unique identifier for the user.
 	 *
 	 * @return mixed
 	 */
-	public function getAuthIdentifier()
-	{
-		return $this->getKey();
+	public function getAuthIdentifier() {
+		return $this->getKey ();
 	}
 
 	/**
@@ -34,8 +38,7 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @return string
 	 */
-	public function getAuthPassword()
-	{
+	public function getAuthPassword() {
 		return $this->password;
 	}
 
@@ -44,9 +47,7 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @return string
 	 */
-	public function getReminderEmail()
-	{
+	public function getReminderEmail() {
 		return $this->email;
 	}
-
 }

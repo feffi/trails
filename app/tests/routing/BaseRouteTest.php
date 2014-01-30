@@ -11,14 +11,14 @@ class BaseRouteTest extends TestCase {
 	public function createApplication() {
 		$unitTesting = true;
 		$testEnvironment = 'testing';
-		return require __DIR__ . '/../../bootstrap/start.php';
+		return require __DIR__ . '/../../../bootstrap/start.php';
 	}
 
 	/**
 	 * @test
 	 */
 	public function testBaseRoute() {
-		$crawler = $this->client->request ( 'GET', '/' );
-		$this->assertTrue ( $this->client->getResponse ()->isOk () );
+		$crawler = $this->client->request ('GET', '/');
+		$this->assertTrue ($this->client->getResponse ()->isOk ());
 	}
 }

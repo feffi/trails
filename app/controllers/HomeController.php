@@ -1,29 +1,17 @@
-<?php
+<?php namespace Trails\Controller;
 
-/**
- * |--------------------------------------------------------------------------
- * | Default Home Controller
- * |--------------------------------------------------------------------------
- * |
- * | You may wish to use controllers instead of, or in addition to, Closure
- * | based routes. That's great! Here is an example controller method to
- * | get you started. To route to this controller, just add the route:
- * |
- * |	Route::get('/', 'HomeController@showWelcome');
- * |
- */
-class HomeController extends BaseController {
+class HomeController extends \Trails\Controller\BaseController {
 
 	public function showSplash() {
-		return View::make ('splash');
+		return \View::make ('splash');
 	}
 
 	public function showHome() {
-		return View::make ('home');
+		return \View::make ('home');
 	}
 
 	public function showLogin() {
-		return View::make ('login');
+		return \View::make ('login');
 	}
 
 	public function doLogin() {

@@ -7,9 +7,11 @@ Route::group (array ()
 // 'before' => 'fakeAuthentication'
 , function () {
 
+	Route::resource('booking', '\Trails\Controller\BookingController');
+
 	// the authenticated home view
 	Route::get ('/', array (
-		'uses' => 'HomeController@showHome'
+		'uses' => '\Trails\Controller\HomeController@showHome'
 	));
 });
 
