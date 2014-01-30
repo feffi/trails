@@ -1,10 +1,12 @@
 <?php
 
+use Trails\Models\User;
+
 class UserTableSeeder extends Seeder {
 
 	public function run() {
 		DB::table ('users')->delete ();
-		UserModel::create (array (
+		User::create (array (
 				'firstname' => 'Kevin',
 				'lastname' => 'Wennemuth',
 				'username' => 'feffi',

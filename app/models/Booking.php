@@ -1,6 +1,6 @@
-<?php
+<?php namespace Trails\Models;
 
-class BookingModel extends Eloquent {
+class Booking extends \Eloquent {
 
 	/**
 	 * The database table used by the model.

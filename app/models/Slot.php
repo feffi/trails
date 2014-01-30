@@ -1,6 +1,6 @@
-<?php
+<?php namespace Trails\Models;
 
-class SlotModel extends Eloquent {
+class Slot extends \Eloquent {
 
 	/**
 	 * The database table used by the model.

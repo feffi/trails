@@ -1,6 +1,6 @@
-<?php
+<?php namespace Trails\Models;
 
-class SessionModel extends Eloquent {
+class Session extends \Eloquent {
 
 	/**
 	 * The database table used by the model.

@@ -1,6 +1,6 @@
-<?php
+<?php namespace Trails\Models;
 
-class TrackModel extends Eloquent {
+class Track extends \Eloquent {
 
 	/**
 	 * The database table used by the model.
