@@ -5,11 +5,14 @@
 		<testsuite name="base">
 			<directory>app/tests/base/</directory>
 		</testsuite>
+		<testsuite name="route">
+			<directory>app/tests/routing/</directory>
+		</testsuite>
 		<testsuite name="controller">
 			<directory>app/tests/controller/</directory>
 		</testsuite>
-		<testsuite name="routing">
-			<directory>app/tests/routing/</directory>
+		<testsuite name="model">
+			<directory>app/tests/model/</directory>
 		</testsuite>
 	</testsuites>
 
