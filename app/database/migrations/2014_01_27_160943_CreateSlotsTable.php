@@ -14,15 +14,15 @@ class CreateSlotsTable extends Migration {
 			$table->engine = 'InnoDB';
 			$table->bigIncrements ('id');
  			$table->bigInteger ('session_id')->unsigned();
- 			$table->bigInteger ('tracks_id')->unsigned();
+ 			$table->bigInteger ('track_id')->unsigned();
 			$table->dateTime ('from');
 			$table->dateTime ('to');
  			$table->foreign('session_id')->references('id')->on('sessions');
- 			$table->foreign('tracks_id')->references('id')->on('tracks');
+ 			$table->foreign('track_id')->references('id')->on('tracks');
 			$table->index ('from');
 			$table->index ('to');
 			$table->index ('session_id');
-			$table->index ('tracks_id');
+			$table->index ('track_id');
 			$table->timestamps ();
 		});
 	}
