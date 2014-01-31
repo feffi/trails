@@ -2,11 +2,17 @@
 <phpunit backupGlobals="false" backupStaticAttributes="false" bootstrap="bootstrap/autoload.php" strict="true" verbose="true" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" processIsolation="false" syntaxCheck="true">
 
 	<testsuites>
-		<testsuite name="trails tests: base">
+		<testsuite name="base">
 			<directory>app/tests/base/</directory>
 		</testsuite>
-		<testsuite name="trails tests: routing">
+		<testsuite name="route">
 			<directory>app/tests/routing/</directory>
+		</testsuite>
+		<testsuite name="controller">
+			<directory>app/tests/controller/</directory>
+		</testsuite>
+		<testsuite name="model">
+			<directory>app/tests/model/</directory>
 		</testsuite>
 	</testsuites>
 
