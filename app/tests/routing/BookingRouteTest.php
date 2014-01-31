@@ -1,5 +1,4 @@
 <?php
-use Symfony\Component\Console\Output\ConsoleOutput;
 use Illuminate\Foundation\Testing\TestCase;
 use Trails\Models\Booking;
 
@@ -17,15 +16,20 @@ class BookingRouteTest extends TestCase {
 	}
 
 	public function setUp() {
-		Artisan::call ('migrate:reset', array (), new ConsoleOutput ());
-		Artisan::call ('migrate', array (
-			'--seed' => 'true'
-		), new ConsoleOutput ());
+		$app = $this->createApplication ();
+		$app->make ('artisan')->call ('migrate:reset', array (
+			'--quiet' => true
+		));
+		$app->make ('artisan')->call ('migrate', array (
+			'--seed' => true,
+			'--quiet' => true
+		));
 		parent::setUp ();
 	}
 
 	/**
 	 * @test
+	 * @large
 	 */
 	public function testBookingRouteIndex() {
 		$crawler = $this->client->request ('GET', '/booking');
@@ -34,6 +38,7 @@ class BookingRouteTest extends TestCase {
 
 	/**
 	 * @test
+	 * @large
 	 */
 	public function testBookingRouteCreate() {
 		$crawler = $this->client->request ('GET', '/booking/create');
@@ -42,6 +47,7 @@ class BookingRouteTest extends TestCase {
 
 	/**
 	 * @test
+	 * @large
 	 */
 	public function testBookingRouteStore() {
 		$booking = Booking::all ();
@@ -58,6 +64,7 @@ class BookingRouteTest extends TestCase {
 
 	/**
 	 * @test
+	 * @large
 	 */
 	public function testBookingRouteShow() {
 		$crawler = $this->client->request ('GET', '/booking/1');
@@ -66,6 +73,7 @@ class BookingRouteTest extends TestCase {
 
 	/**
 	 * @test
+	 * @large
 	 */
 	public function testBookingRouteEdit() {
 		$crawler = $this->client->request ('GET', '/booking/1/edit');
@@ -74,6 +82,7 @@ class BookingRouteTest extends TestCase {
 
 	/**
 	 * @test
+	 * @large
 	 */
 	public function testBookingRouteUpdate() {
 		$booking = Booking::find (1);
@@ -91,13 +100,14 @@ class BookingRouteTest extends TestCase {
 
 	/**
 	 * @test
+	 * @large
 	 */
 	public function testBookingRouteDestroy() {
 		$booking = Booking::all ();
 		$this->assertEquals (3, $booking->count ());
 		$crawler = $this->client->request ('DELETE', '/booking/1');
 		$booking = Booking::find (1);
-		$this->assertNull($booking);
+		$this->assertNull ($booking);
 		$booking = Booking::all ();
 		$this->assertEquals (2, $booking->count ());
 		$this->assertRedirectedTo ('booking');
