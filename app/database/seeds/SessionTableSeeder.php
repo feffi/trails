@@ -17,7 +17,7 @@ class SessionTableSeeder extends Seeder {
 		Session::create (array (
 			'from' => '2014-01-02',
 			'to' => '2014-01-02',
-			'status' => 'PENDING',
+			'status' => 'PLANNED',
 			'description' => 'A day to remember.'
 		));
 	}

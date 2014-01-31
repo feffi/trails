@@ -114,6 +114,7 @@ class BookingModelTest extends TestCase {
 	 * @small
 	 */
 	public function testDelete() {
+		$this->fail('TODO');
 		$this->assertEquals (5, Booking::count ());
 		$assert = Booking::find (1);
 		$assert->delete ();
