@@ -1,4 +1,7 @@
-<?php namespace Trails\Models;
+<?php
+
+
+namespace Trails\Models;
 
 class Booking extends \Eloquent {
 
@@ -8,4 +11,12 @@ class Booking extends \Eloquent {
 	 * @var string
 	 */
 	protected $table = 'bookings';
+
+	public function user() {
+		return $this->hasOne ('Trails\Models\User', 'id', 'user_id');
+	}
+
+	public function track() {
+		return $this->hasOne ('Trails\Models\Track', 'id', 'track_id');
+	}
 }
