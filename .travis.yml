@@ -8,7 +8,13 @@ install:
 
 before_script:
   - pear channel-discover pear.phpqatools.org
+  - pear channel-discover pear.phpunit.de
+  - pear channel-discover pear.symfony.com
+  - pear channel-discover components.ez.no
   - pear install -f phpqatools/phpqatools
+  - pear install --alldeps channel://pear.phpunit.de/PHPUnit
+  - pear install --alldeps ezc/eZComponents
+  - pear install --alldeps phpunit/PHP_CodeCoverage
   - phpenv rehash
  
 script:
