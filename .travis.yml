@@ -7,7 +7,7 @@ install:
   composer install
 
 before_script:
-	- composer selfupdate
+  - composer selfupdate
   - pear channel-discover pear.phpqatools.org
   - pear channel-discover pear.phpunit.de
   - pear channel-discover pear.symfony.com
