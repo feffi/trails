@@ -5,6 +5,7 @@ use Trails\Models\Slot;
 use Trails\Models\Session;
 
 class SessionModelTest extends TestCase {
+
 	/**
 	 * Define seeder dependencies for tests.
 	 */
