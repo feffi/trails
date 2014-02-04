@@ -5,9 +5,45 @@ use Trails\Models\Slot;
 use Trails\Models\Session;
 
 class SessionModelTest extends TestCase {
+	/**
+	 * Define seeder dependencies for tests.
+	 */
+	private $seedDependency = array (
+		'testInheritance' => array (),
+		'testProperty' => array (),
+		'testGetAll' => array (
+			'SessionsTableSeeder'
+		),
+		'testFind' => array (
+			'SessionsTableSeeder'
+		),
+		'testSave' => array (
+			'SessionsTableSeeder'
+		),
+		'testUpdate' => array (
+			'SessionsTableSeeder'
+		),
+		'testDelete' => array (
+			'SessionsTableSeeder'
+		),
+		'testUsers' => array (
+			'SessionsTableSeeder',
+			'BookingsTableSeeder',
+			'UsersTableSeeder'
+		),
+		'testTracks' => array (
+			'SessionsTableSeeder',
+			'SlotsTableSeeder',
+			'TracksTableSeeder'
+		),
+		'testSlots' => array (
+			'SessionsTableSeeder',
+			'SlotsTableSeeder'
+		)
+	);
 
 	/**
-	 * Creates the application.
+	 * Creates the application environment.
 	 *
 	 * @return Symfony\Component\HttpKernel\HttpKernelInterface
 	 */
@@ -17,21 +53,21 @@ class SessionModelTest extends TestCase {
 		return require __DIR__ . '/../../../bootstrap/start.php';
 	}
 
+	/**
+	 * Prepare test environment.
+	 *
+	 * @see \Illuminate\Foundation\Testing\TestCase::setUp()
+	 */
 	public function setUp() {
-		$app = $this->createApplication ();
-		$app->make ('artisan')->call ('migrate:reset', array (
-			'--quiet' => true
-		));
-		$app->make ('artisan')->call ('migrate', array (
-			'--seed' => true,
-			'--quiet' => true
-		));
 		parent::setUp ();
+		foreach ($this->seedDependency [$this->getName ()] as $seeder) {
+			$this->seed ($seeder);
+		}
 	}
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testInheritance() {
 		$assert = new Session ();
@@ -41,7 +77,7 @@ class SessionModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testProperty() {
 		$assert = new Session ();
@@ -51,7 +87,7 @@ class SessionModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testGetAll() {
 		$assert = Session::all ();
@@ -61,7 +97,7 @@ class SessionModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testFind() {
 		$assert = Session::find (1);
@@ -74,7 +110,7 @@ class SessionModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testSave() {
 		$this->assertEquals (2, Session::count ());
@@ -95,7 +131,7 @@ class SessionModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testUpdate() {
 		$this->assertEquals (2, Session::count ());
@@ -124,16 +160,15 @@ class SessionModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testDelete() {
-		$this->fail ('TODO');
-		$this->assertEquals (3, Track::count ());
-		$assert = Track::find (1);
+		$this->assertEquals (2, Session::count ());
+		$assert = Session::find (1);
 		$assert->delete ();
-		$this->assertEquals (2, Track::count ());
+		$this->assertEquals (1, Session::count ());
 		unset ($assert);
-		$assert = Track::find (1);
+		$assert = Session::find (1);
 		$this->assertNull ($assert);
 	}
 
