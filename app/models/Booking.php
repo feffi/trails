@@ -2,6 +2,8 @@
 
 namespace Trails\Models;
 
+use Trails\Models\User;
+
 class Booking extends \Eloquent {
 
 	/**
@@ -10,6 +12,14 @@ class Booking extends \Eloquent {
 	 * @var string
 	 */
 	protected $table = 'bookings';
+
+	/**
+	 * Returns all bookings of the given user
+	 *
+	 */
+	public static function belongsToUser(User $user) {
+		return self::where('user_id', '=', $user->id)->get();
+	}
 
 	/**
 	 * Returns the associated user of the booking.

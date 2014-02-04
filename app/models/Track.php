@@ -11,6 +11,15 @@ class Track extends \Eloquent {
 	 */
 	protected $table = 'tracks';
 
+	/**
+	 * Returns all tracks of the given booking
+	 *
+	 */
+	public static function belongsToBooking($bookings) {
+		$tracks = Track::find($bookings->lists('track_id'));
+		return $tracks;
+	}
+
 	public function users() {
 		return $this->belongsToMany ('Trails\Models\User', 'bookings', 'user_id', 'id');
 	}
