@@ -16,9 +16,9 @@ before_script:
   - pear install --alldeps ezc/eZComponents
   - pear install --alldeps phpunit/PHP_CodeCoverage
   - phpenv rehash
- 
+
 script:
- - ant build.travisci
+  - ant build.travisci
 
 after_script:
   - php vendor/bin/coveralls -v
