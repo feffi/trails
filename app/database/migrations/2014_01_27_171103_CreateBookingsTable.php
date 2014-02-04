@@ -16,8 +16,8 @@ class CreateBookingsTable extends Migration {
 			$table->bigInteger ('user_id')->unsigned();
 			$table->bigInteger ('track_id')->unsigned();
 			$table->timestamps ();
-			$table->foreign('user_id')->references('id')->on('users');
-			$table->foreign('track_id')->references('id')->on('tracks');
+			#$table->foreign('user_id')->references('id')->on('users');
+			#$table->foreign('track_id')->references('id')->on('tracks');
 			$table->index('user_id');
 			$table->index('track_id');
 		});
