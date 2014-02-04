@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Foundation\Testing\TestCase;
 use Trails\Models\Slot;
 use Trails\Models\Session;
@@ -7,7 +8,38 @@ use Trails\Models\Track;
 class SlotModelTest extends TestCase {
 
 	/**
-	 * Creates the application.
+	 * Define seeder dependencies for tests.
+	 */
+	private $seedDependency = array (
+		'testInheritance' => array (),
+		'testProperty' => array (),
+		'testGetAll' => array (
+			'SlotsTableSeeder'
+		),
+		'testFind' => array (
+			'SlotsTableSeeder'
+		),
+		'testSave' => array (
+			'SlotsTableSeeder'
+		),
+		'testUpdate' => array (
+			'SlotsTableSeeder'
+		),
+		'testDelete' => array (
+			'SlotsTableSeeder'
+		),
+		'testSession' => array (
+			'SlotsTableSeeder',
+			'SessionsTableSeeder'
+		),
+		'testTrack' => array (
+			'SlotsTableSeeder',
+			'TracksTableSeeder'
+		),
+	);
+
+	/**
+	 * Creates the application environment.
 	 *
 	 * @return Symfony\Component\HttpKernel\HttpKernelInterface
 	 */
@@ -17,21 +49,21 @@ class SlotModelTest extends TestCase {
 		return require __DIR__ . '/../../../bootstrap/start.php';
 	}
 
+	/**
+	 * Prepare test environment.
+	 *
+	 * @see \Illuminate\Foundation\Testing\TestCase::setUp()
+	 */
 	public function setUp() {
-		$app = $this->createApplication ();
-		$app->make ('artisan')->call ('migrate:reset', array (
-			'--quiet' => true
-		));
-		$app->make ('artisan')->call ('migrate', array (
-			'--seed' => true,
-			'--quiet' => true
-		));
 		parent::setUp ();
+		foreach ($this->seedDependency [$this->getName ()] as $seeder) {
+			$this->seed ($seeder);
+		}
 	}
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testInheritance() {
 		$assert = new Slot ();
@@ -41,7 +73,7 @@ class SlotModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testProperty() {
 		$assert = new Slot ();
@@ -51,7 +83,7 @@ class SlotModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testGetAll() {
 		$assert = Slot::all ();
@@ -61,7 +93,7 @@ class SlotModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testFind() {
 		$assert = Slot::find (1);
@@ -74,7 +106,7 @@ class SlotModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testSave() {
 		$this->assertEquals (6, Slot::count ());
@@ -96,7 +128,7 @@ class SlotModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testUpdate() {
 		$this->assertEquals (6, Slot::count ());
@@ -125,16 +157,15 @@ class SlotModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testDelete() {
-		$this->fail ('TODO');
-		$this->assertEquals (5, Booking::count ());
-		$assert = Booking::find (1);
+		$this->assertEquals (6, Slot::count ());
+		$assert = Slot::find (1);
 		$assert->delete ();
-		$this->assertEquals (4, Booking::count ());
+		$this->assertEquals (5, Slot::count ());
 		unset ($assert);
-		$assert = Booking::find (1);
+		$assert = Slot::find (1);
 		$this->assertNull ($assert);
 	}
 
