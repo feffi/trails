@@ -1,12 +1,50 @@
 <?php
+
 use Illuminate\Foundation\Testing\TestCase;
 use Trails\Models\Track;
 use Trails\Models\Slot;
-// use Trails\Models\User;
+
 class TrackModelTest extends TestCase {
 
 	/**
-	 * Creates the application.
+	 * Define seeder dependencies for tests.
+	 */
+	private $seedDependency = array (
+		'testInheritance' => array (),
+		'testProperty' => array (),
+		'testGetAll' => array (
+			'TracksTableSeeder'
+		),
+		'testFind' => array (
+			'TracksTableSeeder'
+		),
+		'testSave' => array (
+			'TracksTableSeeder'
+		),
+		'testUpdate' => array (
+			'TracksTableSeeder'
+		),
+		'testDelete' => array (
+			'TracksTableSeeder'
+		),
+		'testUsers' => array (
+			'TracksTableSeeder',
+			'UsersTableSeeder',
+			'BookingsTableSeeder'
+		),
+		'testSessions' => array (
+			'TracksTableSeeder',
+			'SlotsTableSeeder',
+			'SessionsTableSeeder'
+		),
+		'testSlots' => array (
+			'TracksTableSeeder',
+			'SlotsTableSeeder'
+		)
+	);
+
+	/**
+	 * Creates the application environment.
 	 *
 	 * @return Symfony\Component\HttpKernel\HttpKernelInterface
 	 */
@@ -16,21 +54,21 @@ class TrackModelTest extends TestCase {
 		return require __DIR__ . '/../../../bootstrap/start.php';
 	}
 
+	/**
+	 * Prepare test environment.
+	 *
+	 * @see \Illuminate\Foundation\Testing\TestCase::setUp()
+	 */
 	public function setUp() {
-		$app = $this->createApplication ();
-		$app->make ('artisan')->call ('migrate:reset', array (
-			'--quiet' => true
-		));
-		$app->make ('artisan')->call ('migrate', array (
-			'--seed' => true,
-			'--quiet' => true
-		));
 		parent::setUp ();
+		foreach ($this->seedDependency [$this->getName ()] as $seeder) {
+			$this->seed ($seeder);
+		}
 	}
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testInheritance() {
 		$assert = new Track ();
@@ -40,7 +78,7 @@ class TrackModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testProperty() {
 		$assert = new Track ();
@@ -50,7 +88,7 @@ class TrackModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testGetAll() {
 		$assert = Track::all ();
@@ -60,7 +98,7 @@ class TrackModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testFind() {
 		$assert = Track::find (1);
@@ -72,7 +110,7 @@ class TrackModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testSave() {
 		$this->assertEquals (3, Track::count ());
@@ -91,7 +129,7 @@ class TrackModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testUpdate() {
 		$this->assertEquals (3, Track::count ());
@@ -117,10 +155,9 @@ class TrackModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testDelete() {
-		$this->fail('TODO');
 		$this->assertEquals (3, Track::count ());
 		$assert = Track::find (1);
 		$assert->delete ();
