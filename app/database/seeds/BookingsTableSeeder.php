@@ -1,35 +1,34 @@
 <?php
 use Trails\Models\Booking;
-use Trails\Models\User;
-use Trails\Models\Track;
 
 class BookingsTableSeeder extends Seeder {
 
 	public function run() {
-		DB::table ('bookings')->delete ();
+		Eloquent::unguard ();
+		DB::table ('bookings')->truncate();
 		Booking::create (array (
-			'user_id' => User::where ('email', '=', 'feffi@feffi.org')->pluck ('id'),
-			'track_id' => Track::where ('name', '=', 'A planned session')->pluck ('id')
+			'user_id' => 1,
+			'track_id' => 3
 		));
 
 		Booking::create (array (
-			'user_id' => User::where ('email', '=', 'feffi@feffi.org')->pluck ('id'),
-			'track_id' => Track::where ('name', '=', 'Another very important session')->pluck ('id')
+			'user_id' => 1,
+			'track_id' => 2
 		));
 
 		Booking::create (array (
-			'user_id' => User::where ('email', '=', 'feffi@feffi.org')->pluck ('id'),
-			'track_id' => Track::where ('name', '=', 'git at it\'s best')->pluck ('id')
+			'user_id' => 1,
+			'track_id' => 1
 		));
 
 		Booking::create (array (
-			'user_id' => User::where ('email', '=', 'john@feffi.org')->pluck ('id'),
-			'track_id' => Track::where ('name', '=', 'git at it\'s best')->pluck ('id')
+			'user_id' => 2,
+			'track_id' => 1
 		));
 
 		Booking::create (array (
-			'user_id' => User::where ('email', '=', 'john@feffi.org')->pluck ('id'),
-			'track_id' => Track::where ('name', '=', 'Another very important session')->pluck ('id')
+			'user_id' => 2,
+			'track_id' => 2
 		));
 	}
 }

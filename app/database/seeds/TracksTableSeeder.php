@@ -5,7 +5,8 @@ use Trails\Models\Track;
 class TracksTableSeeder extends Seeder {
 
 	public function run() {
-		DB::table('tracks')->delete();
+		Eloquent::unguard ();
+		DB::table ('tracks')->truncate();
 		Track::create (array (
 			'name' => 'git at it\'s best',
 			'status' => 'PENDING',
