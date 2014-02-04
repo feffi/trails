@@ -6,7 +6,38 @@ use Trails\Models\User;
 class BookingModelTest extends TestCase {
 
 	/**
-	 * Creates the application.
+	 * Define seeder dependencies for tests.
+	 */
+	private $seedDependency = array (
+		'testInheritance' => array (),
+		'testProperty' => array (),
+		'testGetAll' => array (
+			'BookingsTableSeeder'
+		),
+		'testFind' => array (
+			'BookingsTableSeeder'
+		),
+		'testSave' => array (
+			'BookingsTableSeeder'
+		),
+		'testUpdate' => array (
+			'BookingsTableSeeder'
+		),
+		'testDelete' => array (
+			'BookingsTableSeeder'
+		),
+		'testUser' => array (
+			'BookingsTableSeeder',
+			'UserTableSeeder'
+		),
+		'testTrack' => array (
+			'BookingsTableSeeder',
+			'TracksTableSeeder'
+		)
+	);
+
+	/**
+	 * Creates the application environment.
 	 *
 	 * @return Symfony\Component\HttpKernel\HttpKernelInterface
 	 */
@@ -16,21 +47,21 @@ class BookingModelTest extends TestCase {
 		return require __DIR__ . '/../../../bootstrap/start.php';
 	}
 
+	/**
+	 * Prepare test environment.
+	 *
+	 * @see \Illuminate\Foundation\Testing\TestCase::setUp()
+	 */
 	public function setUp() {
-		$app = $this->createApplication ();
-		$app->make ('artisan')->call ('migrate:reset', array (
-			'--quiet' => true
-		));
-		$app->make ('artisan')->call ('migrate', array (
-			'--seed' => true,
-			'--quiet' => true
-		));
 		parent::setUp ();
+		foreach ($this->seedDependency [$this->getName ()] as $seeder) {
+			$this->seed ($seeder);
+		}
 	}
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testInheritance() {
 		$assert = new Booking ();
@@ -40,7 +71,7 @@ class BookingModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testProperty() {
 		$assert = new Booking ();
@@ -50,7 +81,7 @@ class BookingModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testGetAll() {
 		$assert = Booking::all ();
@@ -60,7 +91,7 @@ class BookingModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testFind() {
 		$assert = Booking::find (1);
@@ -71,7 +102,7 @@ class BookingModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testSave() {
 		$this->assertEquals (5, Booking::count ());
@@ -88,7 +119,7 @@ class BookingModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testUpdate() {
 		$this->assertEquals (5, Booking::count ());
@@ -111,10 +142,9 @@ class BookingModelTest extends TestCase {
 
 	/**
 	 * @test
-	 * @small
+	 * @large
 	 */
 	public function testDelete() {
-		$this->fail('TODO');
 		$this->assertEquals (5, Booking::count ());
 		$assert = Booking::find (1);
 		$assert->delete ();
