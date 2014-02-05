@@ -14,7 +14,6 @@ before_script:
   - pear channel-discover components.ez.no
   - pear install -f phpqatools/phpqatools
   - pear install --alldeps ezc/eZComponents
-  - pear install --alldeps phpunit/PHP_CodeCoverage
   - phpenv rehash
 
 script:
