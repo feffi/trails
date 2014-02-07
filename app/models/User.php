@@ -34,7 +34,7 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	 * @return boolean
 	 */
 	public function hasTrack($id) {
-		foreach ($this->tracks() as $track) {
+		foreach ($this->tracks () as $track) {
 			if ($track->id == $id) {
 				return true;
 			}
@@ -67,9 +67,7 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	 * @return \Illuminate\Database\Eloquent\Collection
 	 */
 	public function getSlots() {
-		$slots = Slot::whereIn ('track_id', $this->tracks->modelKeys ())->distinct ()->get (array (
-			'session_id'
-		));
+		$slots = Slot::whereIn ('track_id', $this->tracks->modelKeys ())->distinct ()->get ();
 		return $slots;
 	}
 
@@ -79,7 +77,7 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	 * @return \Illuminate\Database\Eloquent\Collection
 	 */
 	public function getSessions() {
-		$sessions = Session::find ($this->getSlots ()->lists ('session_id'));
+		$sessions = Session::find (array_unique ($this->getSlots ()->lists ('session_id')));
 		return $sessions;
 	}
 

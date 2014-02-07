@@ -28,7 +28,7 @@ class BookingModelTest extends TestCase {
 		),
 		'testUser' => array (
 			'BookingsTableSeeder',
-			'UserTableSeeder'
+			'UsersTableSeeder'
 		),
 		'testTrack' => array (
 			'BookingsTableSeeder',
