@@ -18,20 +18,16 @@ class EnvironmentTest extends TestCase {
 	 * @test
 	 */
 	public function testPhpVersion() {
-		$this->assertTrue(true);
+		$version = phpversion();
+		$assert = version_compare($version, '5.5.0', '>=');
+		$this->assertTrue($assert);
 	}
 
 	/**
 	 * @test
 	 */
 	public function testPhpModules() {
-		$this->assertTrue(true);
-	}
-
-	/**
-	 * @test
-	 */
-	public function testEnvironmentVariables() {
-		$this->assertTrue(true);
+		$this->assertEquals(MCRYPT_DECRYPT, intval(1));
+		$this->assertEquals(MCRYPT_ENCRYPT, intval(0));
 	}
 }
