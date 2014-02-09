@@ -3,9 +3,6 @@ language: php
 php:
   - 5.5
 
-before_script:
-  - mysql -e 'create database trails;'
-
 services:
   - mysql
   - redis-server
@@ -14,6 +11,7 @@ install:
   composer install
 
 before_script:
+  - mysql -e 'create database trails;'
   - composer selfupdate
   - pear channel-discover pear.phpqatools.org
   - pear channel-discover pear.phpunit.de
