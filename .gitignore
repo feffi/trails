@@ -6,3 +6,4 @@ composer.lock
 Thumbs.db
 /report
 /build
+_ide_helper.php
