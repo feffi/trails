@@ -1,8 +1,19 @@
 {
 	"name": "feffi/trails",
+	"type": "application",
 	"description": "The trails project.",
-	"keywords": ["courses", "trails"],
+	"keywords": ["sessions", "tracks", "slots", "booking", "trails"],
+	"homepage": "https://github.com/feffi/trails",
 	"license": "MIT",
+	"authors": [{
+		"name": "Kevin Wennemuth",
+        "email": "feffi@feffi.org",
+        "homepage": "http://feffi.org",
+        "role": "Developer"
+        }],
+    "require": {
+    	"php": ">=5.5.0"
+    },
 	"require": {
 		"laravel/framework": "4.1.*",
 		"barryvdh/laravel-ide-helper": "1.*",
