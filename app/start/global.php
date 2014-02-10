@@ -79,3 +79,9 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+
+Event::listen("illuminate.query", function($query, $bindings, $time, $name){
+	\Log::debug($query."\n");
+	\Log::debug(json_encode($bindings)."\n");
+});
