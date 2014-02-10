@@ -14,14 +14,6 @@ class Booking extends \Eloquent {
 	protected $table = 'bookings';
 
 	/**
-	 * Returns all bookings of the given user
-	 *
-	 */
-	public static function belongsToUser(User $user) {
-		return self::where('user_id', '=', $user->id)->get();
-	}
-
-	/**
 	 * Returns the associated user of the booking.
 	 *
 	 * @return The associated User(Model).

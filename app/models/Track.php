@@ -15,9 +15,8 @@ class Track extends \Eloquent {
 	 * Returns all tracks of the given booking
 	 *
 	 */
-	public static function belongsToBooking($bookings) {
-		$tracks = Track::find($bookings->lists('track_id'));
-		return $tracks;
+	public function bookings() {
+		return $this->hasMany ('Trails\Models\Booking', 'track_id');
 	}
 
 	public function users() {

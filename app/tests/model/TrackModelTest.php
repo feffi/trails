@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Foundation\Testing\TestCase;
 use Trails\Models\Track;
 use Trails\Models\Slot;
@@ -40,6 +39,11 @@ class TrackModelTest extends TestCase {
 		'testSlots' => array (
 			'TracksTableSeeder',
 			'SlotsTableSeeder'
+		),
+		'testBookings' => array (
+			'TracksTableSeeder',
+			'UsersTableSeeder',
+			'BookingsTableSeeder'
 		)
 	);
 
@@ -251,5 +255,26 @@ class TrackModelTest extends TestCase {
 		$this->assertEquals (1, $assert->track_id);
 		$this->assertEquals ('2014-01-01 02:00:00', $assert->from);
 		$this->assertEquals ('2014-01-01 03:00:00', $assert->to);
+	}
+
+	/**
+	 * @test
+	 * @large
+	 */
+	public function testBookings() {
+		$track = Track::find (1);
+		$bookings = $track->bookings;
+		$this->assertInstanceOf ('Illuminate\Database\Eloquent\Collection', $bookings);
+		$this->assertEquals (2, $bookings->count ());
+
+		$assert = $bookings [0];
+		$this->assertEquals (3, $assert->id);
+		$this->assertEquals (1, $assert->user_id);
+		$this->assertEquals (1, $assert->track_id);
+
+		$assert = $bookings [1];
+		$this->assertEquals (4, $assert->id);
+		$this->assertEquals (2, $assert->user_id);
+		$this->assertEquals (1, $assert->track_id);
 	}
 }

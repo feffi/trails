@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Foundation\Testing\TestCase;
 use Trails\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class UserModelTest extends TestCase {
 
@@ -39,6 +40,16 @@ class UserModelTest extends TestCase {
 			'TracksTableSeeder',
 			'SlotsTableSeeder',
 			'SessionsTableSeeder'
+		),
+		'testBookings' => array (
+			'TracksTableSeeder',
+			'UsersTableSeeder',
+			'BookingsTableSeeder'
+		),
+		'testHasTracks' => array (
+			'TracksTableSeeder',
+			'UsersTableSeeder',
+			'BookingsTableSeeder'
 		)
 	);
 
@@ -302,5 +313,60 @@ class UserModelTest extends TestCase {
 		$this->assertEquals ('2014-01-02', $assert->to);
 		$this->assertEquals (SessionStatus::PLANNED, $assert->status);
 		$this->assertEquals ('A day to remember.', $assert->description);
+	}
+
+	/**
+	 * @test
+	 * @large
+	 */
+	public function testBookings() {
+		$user = User::find (1);
+		$bookings = $user->bookings;
+		$this->assertInstanceOf ('Illuminate\Database\Eloquent\Collection', $bookings);
+		$this->assertEquals (3, $bookings->count ());
+
+		$assert = $bookings [0];
+		$this->assertEquals (1, $assert->id);
+		$this->assertEquals (1, $assert->user_id);
+		$this->assertEquals (3, $assert->track_id);
+
+		$assert = $bookings [1];
+		$this->assertEquals (2, $assert->id);
+		$this->assertEquals (1, $assert->user_id);
+		$this->assertEquals (2, $assert->track_id);
+
+		$assert = $bookings [2];
+		$this->assertEquals (3, $assert->id);
+		$this->assertEquals (1, $assert->user_id);
+		$this->assertEquals (1, $assert->track_id);
+	}
+
+	/**
+	 * @test
+	 * @large
+	 */
+	public function testHasTracks() {
+		$user = User::find (2);
+		$this->assertTrue ($user->hasTracks (array (
+			1,
+			2
+		)));
+		$this->assertFalse ($user->hasTracks (array (
+			3
+		)));
+		$this->assertFalse ($user->hasTracks (array (
+			1,
+			3
+		)));
+		$this->assertFalse ($user->hasTracks (array (
+			2,
+			3
+		)));
+		$this->assertFalse ($user->hasTracks (array (
+			1,
+			2,
+			3
+		)));
+		$this->assertFalse ($user->hasTracks (array ()));
 	}
 }

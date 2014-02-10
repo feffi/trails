@@ -33,11 +33,15 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @return boolean
 	 */
-	public function hasTrack($id) {
-		foreach ($this->tracks () as $track) {
-			if ($track->id == $id) {
-				return true;
-			}
+	public function hasTracks(array $searchTracks) {
+		if (empty ($searchTracks)) {
+			return false;
+		}
+		$ownTracks = $this->tracks->modelKeys ();
+		$foundTracks = array_intersect ($ownTracks, $searchTracks);
+
+		if (count ($foundTracks) == count ($searchTracks)) {
+			return true;
 		}
 		return false;
 	}
